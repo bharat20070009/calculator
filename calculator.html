@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Calculator & Image Features</title>
+    <style>
+       :root {
+    --bg-color: #1E1E2E;
+    --calc-bg: #2A2D3E;
+    --button-color: #4A90E2;
+    --button-hover: #357ABD;
+    --button-text: #FFFFFF;
+    --input-bg: #1E1E2E;
+    --input-text: #FFD700;
+}
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: var(--bg-color);
+            margin: 0;
+            color: rgb(211, 20, 20);
+        }
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            width: 300px;
+            padding: 20px;
+            background: #2A2D3E;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .calculator input {
+            grid-column: span 4;
+            height: 50px;
+            text-align: right;
+            font-size: var(--font-size);
+            border: none;
+            padding: 10px;
+            background: #faf9f860;
+            color: rgb(205, 37, 37);
+        }
+        .calculator button {
+            height: 50px;
+            font-size: var(--font-size);
+            background: var(--button-color);
+            border: none;
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.763);
+            border-radius: 5px;
+        }
+        .calculator button:hover {
+            background: var(--button-hover);
+            color:rgb(20, 230, 6);
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            width: 80%;
+            margin-top: 20px;
+        }
+        .image-grid img {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+            filter: grayscale(20%);
+            transition: 0.3s;
+        }
+        .image-grid img:hover {
+            filter: grayscale(0%);
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" disabled>
+        <button>C</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>/</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>*</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>-</button>
+        <button>0</button>
+        <button>.</button>
+        <button>=</button>
+        <button>+</button>
+    </div>
+
+    <div class="image-grid">
+        <img src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image 1">
+        <img src="https://images.pexels.com/photos/4327602/pexels-photo-4327602.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Image 2">
+        <img src="https://images.pexels.com/photos/247599/pexels-photo-247599.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Image 3">
+        <img src="https://images.pexels.com/photos/5496464/pexels-photo-5496464.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Image 4">
+    </div>
+</body>
+</html>
