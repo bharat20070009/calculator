@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2c3e50;
+            font-family: Arial, sans-serif;
+        }
+        .calculator {
+            background: #1f2d3d;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .display {
+            background: #111;
+            color: white;
+            font-size: 2rem;
+            padding: 15px;
+            text-align: right;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        button {
+            background: #e0dac1;
+            border: none;
+            padding: 15px;
+            font-size: 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #e6a603;
+        }
+        .del, .reset {
+            background: #065bd2;
+            color: white;
+        }
+        .del:hover, .reset:hover {
+            background: #07ec22;
+        }
+        .equal {
+            background: #e63946;
+            color: white;
+            grid-column: span 2;
+        }
+        .equal:hover {
+            background: #b40749;
+        }
+        .reset {
+            grid-column: span 2;
+        }
+     
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">0</div>
+        <div class="buttons">
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="del">DEL</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>+</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>-</button>
+            <button>.</button>
+            <button>0</button>
+            <button>/</button>
+            <button>x</button>
+            <button class="reset">RESET</button>
+            <button class="equal">=</button>
+        </div>
+    </div>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    let currentInput = "";
+    const display = document.querySelector(".display");
+    const buttons = document.querySelectorAll("button")
+    function handleButtonClick(value) {
+        if (value === "RESET") {
+            currentInput = "";
+            display.textContent = "0";
+        } else if (value === "DEL") {
+            currentInput = currentInput.slice(0, -1);
+            display.textContent = currentInput || "0";
+        } else if (value === "=") {
+            try {
+                currentInput = eval(currentInput.replace("x", "*"));
+                display.textContent = currentInput;
+            } catch {
+                display.textContent = "Error";
+                currentInput = "";
+            }
+        } else {
+            currentInput += value;
+            display.textContent = currentInput;
+        }
+    }
+    buttons.forEach(button => {
+        button.addEventListener("click", function () {
+            handleButtonClick(button.textContent);
+        });
+    });
+    document.getElementById("myForm")?.addEventListener("submit", function(event) {
+        const inputField = document.getElementById("userInput");
+        if (!inputField.value) {
+            alert("Input field cannot be empty!");
+            event.preventDefault();
+        }
+    });
+    document.getElementById("clickMe")?.addEventListener("click", function () {
+        alert("Button Clicked!");
+    });
+});
+
+</script>
+    
+   
+   
+</body>
+</html>
