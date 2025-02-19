@@ -3,109 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Calculator & Image Features</title>
+    <title>Calculator</title>
     <style>
-       :root {
-    --bg-color: #1E1E2E;
-    --calc-bg: #2A2D3E;
-    --button-color: #4A90E2;
-    --button-hover: #357ABD;
-    --button-text: #FFFFFF;
-    --input-bg: #1E1E2E;
-    --input-text: #FFD700;
-}
         body {
-            font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
-            background-color: var(--bg-color);
-            margin: 0;
-            color: rgb(211, 20, 20);
+            background-color: #2c3e50;
+            font-family: Arial, sans-serif;
         }
         .calculator {
+            background: #1f2d3d;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .display {
+            background: #111;
+            color: white;
+            font-size: 2rem;
+            padding: 15px;
+            text-align: right;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-            width: 300px;
-            padding: 20px;
-            background: #2A2D3E;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            gap: 10px;
         }
-        .calculator input {
-            grid-column: span 4;
-            height: 50px;
-            text-align: right;
-            font-size: var(--font-size);
+        button {
+            background: #e0dac1;
             border: none;
-            padding: 10px;
-            background: #faf9f860;
-            color: rgb(205, 37, 37);
-        }
-        .calculator button {
-            height: 50px;
-            font-size: var(--font-size);
-            background: var(--button-color);
-            border: none;
-            cursor: pointer;
-            color: rgba(0, 0, 0, 0.763);
+            padding: 15px;
+            font-size: 1.5rem;
             border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
         }
-        .calculator button:hover {
-            background: var(--button-hover);
-            color:rgb(20, 230, 6);
+        button:hover {
+            background: #e6a603;
         }
-
-        .image-grid {
+        .del, .reset {
+            background: #065bd2;
+            color: white;
+        }
+        .del:hover, .reset:hover {
+            background: #07ec22;
+        }
+        .equal {
+            background: #e63946;
+            color: white;
+            grid-column: span 2;
+        }
+        .equal:hover {
+            background: #b40749;
+        }
+        .reset {
+            grid-column: span 2;
+        }
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #ecf0f1;
+            --border-radius: 10px;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .gallery {
             display: flex;
             flex-wrap: wrap;
+            gap: 15px;
             justify-content: center;
-            gap: 10px;
-            width: 80%;
-            margin-top: 20px;
         }
-        .image-grid img {
-            width: 150px;
-            height: auto;
-            border-radius: 10px;
-            filter: grayscale(20%);
-            transition: 0.3s;
+        
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            filter: grayscale(50%);
+            transition: transform 0.3s, filter 0.3s;
         }
-        .image-grid img:hover {
+        
+        .gallery img:hover {
+            transform: scale(1.1);
             filter: grayscale(0%);
+        }
+        
+        .masked-image {
+            width: 250px;
+            height: 250px;
+            mask-image: url('mask.png');
+            -webkit-mask-image: url('mask.png');
+        }
+        
+        .sticky {
+            position: sticky;
+            top: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: var(--border-radius);
         }
     </style>
 </head>
 <body>
     <div class="calculator">
-        <input type="text" disabled>
-        <button>C</button>
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button>/</button>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button>*</button>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>-</button>
-        <button>0</button>
-        <button>.</button>
-        <button>=</button>
-        <button>+</button>
+        <div class="display">0</div>
+        <div class="buttons">
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="del">DEL</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>+</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>-</button>
+            <button>.</button>
+            <button>0</button>
+            <button>/</button>
+            <button>x</button>
+            <button class="reset">RESET</button>
+            <button class="equal">=</button>
+        </div>
     </div>
-
-    <div class="image-grid">
-        <img src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image 1">
-        <img src="https://images.pexels.com/photos/4327602/pexels-photo-4327602.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Image 2">
-        <img src="https://images.pexels.com/photos/247599/pexels-photo-247599.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Image 3">
-        <img src="https://images.pexels.com/photos/5496464/pexels-photo-5496464.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Image 4">
+    <h1 class="sticky">Responsive Image Grid</h1>
+    <div class="gallery">
+        <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sample Image 1">
+        <img src="https://images.pexels.com/photos/30791857/pexels-photo-30791857/free-photo-of-aerial-view-of-tropical-beach-and-boats-in-papua.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sample Image 2">
+        <img src="https://images.pexels.com/photos/30755287/pexels-photo-30755287/free-photo-of-sunset-over-vik-church-in-icelandic-winter.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sample Image 3">
+        <img src="https://images.pexels.com/photos/30777832/pexels-photo-30777832/free-photo-of-aerial-view-of-salinas-victoria-landscape.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sample Image 4">
+        <img src="https://images.pexels.com/photos/30770678/pexels-photo-30770678/free-photo-of-aerial-view-of-uluwatu-cliffs-and-ocean-in-bali.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sample Image 5">
     </div>
 </body>
 </html>
